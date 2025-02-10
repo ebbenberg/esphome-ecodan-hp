@@ -1,0 +1,388 @@
+theme: Backend-selected
+path: mitsubishi
+icon: mdi:heat-pump-outline
+badges: []
+cards:
+  - type: picture-elements
+    image: local/images/ecodan/ecodan-basis.png?v=1
+    elements:
+      - type: conditional
+        conditions:
+          - entity: sensor.ecodan_heatpump_operation_mode
+            state: "Off"
+        elements:
+          - type: image
+            image: local/images/ecodan/ecodan-off.png?v=2
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+      - type: conditional
+        conditions:
+          - entity: sensor.ecodan_heatpump_operation_mode
+            state: Space Heating
+        elements:
+          - type: image
+            image: local/images/ecodan/ecodan-heating.png?v=2
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+      - type: conditional
+        conditions:
+          - entity: sensor.ecodan_heatpump_operation_mode
+            state: Heating Water
+        elements:
+          - type: image
+            image: local/images/ecodan/ecodan-hot-water.png?v=2
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+      - type: conditional
+        conditions:
+          - entity: sensor.ecodan_heatpump_operation_mode
+            state: Legionella Prevention
+        elements:
+          - type: image
+            image: local/images/ecodan/ecodan-hot-water.png?v=2
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+      - type: conditional
+        conditions:
+          - entity: sensor.ecodan_heatpump_operation_mode
+            state: Defrost
+        elements:
+          - type: image
+            image: local/images/ecodan/ecodan-defrost.png?v=2
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+      - type: conditional
+        conditions:
+          - entity: sensor.ecodan_heatpump_operation_mode
+            state: Frost Protection
+        elements:
+          - type: image
+            image: local/images/ecodan/ecodan-cooling.png?v=2
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+      - type: conditional
+        conditions:
+          - entity: sensor.ecodan_heatpump_operation_mode
+            state: Space Cooling
+        elements:
+          - type: image
+            image: local/images/ecodan/ecodan-cooling.png?v=2
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+      - type: conditional
+        conditions:
+          - entity: sensor.ecodan_heatpump_operation_mode
+            state: DHW
+          - entity: binary_sensor.ecodan_heatpump_booster_heater
+            state: "off"
+        elements:
+          - type: image
+            image: local/images/ecodan/ecodan-element.png?v=2
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+      - type: state-label
+        entity: sensor.ecodan_heatpump_feed_temp
+        style:
+          top: 86.5%
+          left: 21%
+          color: black
+      - type: state-label
+        entity: sensor.ecodan_heatpump_zone_1_h_c_setpoint_value
+        style:
+          top: 80%
+          left: 21%
+          color: black
+      - type: state-label
+        entity: sensor.ecodan_heatpump_feed_temp
+        style:
+          top: 13%
+          left: 74%
+          color: black
+          align: right
+      - type: state-label
+        entity: sensor.ecodan_heatpump_delta_t
+        prefix: "Δt: "
+        style:
+          top: 35%
+          left: 10%
+          color: black
+      - type: state-label
+        entity: sensor.ecodan_heatpump_return_temp
+        style:
+          top: 38%
+          left: 74%
+          color: black
+          align: right
+      - type: state-label
+        entity: sensor.ecodan_heatpump_dhw_current_temp
+        style:
+          top: 31%
+          left: 42%
+          color: white
+      - type: state-label
+        entity: sensor.ecodan_heatpump_refrigerant_liquid_temp
+        style:
+          top: 54%
+          left: 85%
+          color: white
+      - type: state-label
+        entity: sensor.ecodan_heatpump_outside_temp
+        style:
+          top: 92%
+          left: 82%
+          color: white
+      - type: state-label
+        entity: sensor.ecodan_heatpump_compressor_frequency
+        style:
+          top: 68%
+          left: 82%
+          color: white
+      - type: state-label
+        entity: sensor.ecodan_heatpump_feed_temp
+        style:
+          top: 13%
+          left: 10%
+          color: white
+      - type: service-button
+        title: ":"
+        style:
+          top: 79%
+          left: 33%
+          color: black
+        service: homeassistant.turn_on
+        service_data:
+          entity_id: script.temperature_up
+      - type: service-button
+        title: .
+        style:
+          top: 87%
+          left: 33%
+          color: black
+        service: homeassistant.turn_on
+        service_data:
+          entity_id: script.temperature_down
+  - type: entities
+    entities:
+      - entity: switch.ecodan_heatpump_heatpump
+        name: System On/Off
+      - entity: switch.ecodan_heatpump_holiday_mode
+        name: Holiday mode
+      - entity: switch.ecodan_heatpump_force_dhw
+        name: Force DHW
+      - entity: switch.ecodan_heatpump_server_control_enable_disable
+        name: Server control - enable/disable
+      - entity: switch.ecodan_heatpump_server_control_prohibit_dhw
+        name: Server control - prohibit DHW
+      - entity: switch.ecodan_heatpump_server_control_zone_1_prohibit_cooling
+        name: Server control - zone 1 prohibit cooling
+      - entity: switch.ecodan_heatpump_server_control_zone_1_prohibit_heating
+        name: Server control - zone 1 prohibit heating
+      - entity: select.ecodan_heatpump_dhw_mode
+        name: Set DHW mode
+    show_header_toggle: false
+  - type: entities
+    entities:
+      - entity: sensor.ecodan_heatpump_outside_temp
+        name: Outside temp
+      - entity: sensor.ecodan_heatpump_zone_1_room_temp
+        name: Room temp
+      - entity: sensor.ecodan_heatpump_feed_temp
+        name: Feed temp
+      - entity: sensor.ecodan_heatpump_return_temp
+        name: Return temp
+      - entity: sensor.ecodan_heatpump_dhw_current_temp
+        name: DHW current temp
+      - entity: sensor.ecodan_heatpump_refrigerant_condensing_temp
+        name: Refrigerant liquid temp
+      - entity: sensor.ecodan_heatpump_refrigerant_liquid_temp
+        name: Refrigerant cond. temp
+      - entity: sensor.ecodan_heatpump_flow_rate
+        name: Flow value
+      - entity: sensor.ecodan_heatpump_operating_runtime
+        name: Operating runtime
+      - entity: sensor.ecodan_heatpump_controller_version
+        name: Controller version
+      - entity: sensor.ecodan_heatpump_compressor_frequency
+        name: Compressor Frequency
+      - entity: sensor.ecodan_heatpump_dhw_max_temp_drop
+        name: DHW max temp hysterese
+      - entity: sensor.ecodan_heatpump_heat_source
+        name: Heat source
+      - entity: sensor.ecodan_heatpump_operation_mode
+        name: Operating mode
+      - entity: sensor.ecodan_heatpump_estimated_output_power
+        name: Estimated output Power
+      - entity: sensor.ecodan_heatpump_controller_firmware
+      - entity: sensor.ecodan_heatpump_total_energy_consumed
+    title: Ecodan Heatpump
+  - type: entities
+    entities:
+      - entity: select.ecodan_heatpump_selected_operating_mode
+        name: Mode
+      - entity: sensor.ecodan_heatpump_zone_1_room_setpoint_value
+        name: Room setpoint value
+      - entity: sensor.ecodan_heatpump_zone_1_h_c_setpoint_value
+        name: Flow setpoint value
+      - entity: sensor.ecodan_heatpump_dhw_setpoint_value
+        name: DHW setpoint value
+    show_header_toggle: false
+  - type: history-graph
+    entities:
+      - entity: sensor.ecodan_heatpump_feed_temp
+        name: Feed temp
+      - entity: sensor.ecodan_heatpump_return_temp
+        name: Return temp
+      - entity: sensor.ecodan_heatpump_dhw_current_temp
+        name: DHW temp
+      - entity: sensor.ecodan_heatpump_compressor_frequency
+        name: Compressor freq
+      - entity: sensor.ecodan_heatpump_operation_mode
+        name: Oper. mode
+      - entity: binary_sensor.ecodan_heatpump_booster_heater
+        name: Boost. heater
+      - entity: binary_sensor.ecodan_heatpump_defrost
+        name: Defrost
+    hours_to_show: 16
+  - type: grid
+    square: false
+    columns: 1
+    cards:
+      - type: thermostat
+        entity: climate.ecodan_heatpump_zone_1_climate
+        features:
+          - type: climate-hvac-modes
+            hvac_modes:
+              - "off"
+              - cool
+              - heat
+      - type: thermostat
+        entity: climate.ecodan_heatpump_dhw_climate
+        features:
+          - type: climate-hvac-modes
+            hvac_modes:
+              - "off"
+              - heat
+  - type: custom:apexcharts-card
+    graph_span: 7d
+    update_interval: 10m
+    cache: true
+    span:
+      end: day
+      offset: "-1sec"
+    header:
+      show: true
+      title: Ecodan history per day
+    apex_config:
+      xaxis:
+        labels:
+          format: dd-MM
+          show: true
+          showAlways: true
+      yaxis:
+        forceNiceScale: true
+        decimalsInFloat: 0
+        min: 0
+        max: 15
+      chart:
+        type: area
+        height: 250
+      stroke:
+        show: true
+        width: 1
+      legend:
+        show: true
+      dataLabels:
+        enabled: false
+        distributed: true
+      fill:
+        type: gradient
+        gradient:
+          shadeIntensity: 0.1
+          opacityFrom: 0.25
+          opacityTo: 1
+          inverseColors: true
+          stops:
+            - 0
+            - 90
+            - 100
+    series:
+      - entity: sensor.ecodan_heatpump_heating_consumed
+        name: Heating
+        type: column
+        float_precision: 2
+        group_by:
+          func: last
+          duration: 23h59m59s
+      - entity: sensor.ecodan_heatpump_cool_consumed
+        name: Cooling
+        type: column
+        float_precision: 2
+        group_by:
+          func: last
+          duration: 23h59m59s
+      - entity: sensor.ecodan_heatpump_dhw_consumed
+        name: DHW
+        type: column
+        float_precision: 2
+        group_by:
+          func: last
+          duration: 23h59m59s
+      - entity: sensor.ecodan_heatpump_heating_cop
+        name: Heating cop
+        type: column
+        float_precision: 2
+        group_by:
+          func: last
+          duration: 23h59m59s
+      - entity: sensor.ecodan_heatpump_cool_cop
+        name: Cool cop
+        type: column
+        float_precision: 2
+        group_by:
+          func: last
+          duration: 23h59m59s
+      - entity: sensor.ecodan_heatpump_dhw_cop
+        name: DHW cop
+        type: column
+        float_precision: 2
+        group_by:
+          func: last
+          duration: 23h59m59s
+  - type: entities
+    entities:
+      - entity: binary_sensor.ecodan_heatpump_defrost
+        name: Defrost
+      - entity: binary_sensor.ecodan_heatpump_water_pump_status
+        name: Water pomp
+      - entity: binary_sensor.ecodan_heatpump_3_way_valve
+        name: 3-way valve
+      - entity: binary_sensor.ecodan_heatpump_dhw_forced
+        name: Status DHW forced
+      - entity: binary_sensor.ecodan_heatpump_booster_heater
+        name: Booster heater element
+      - entity: binary_sensor.ecodan_heatpump_immersion_heater
+        name: Immersion heater element
+      - entity: binary_sensor.ecodan_heatpump_in1_thermostat
+        name: IN1 thermostaat
+      - entity: binary_sensor.ecodan_heatpump_dhw_prohibit
+        name: DHW forbidden
+      - entity: binary_sensor.ecodan_heatpump_dhw_eco
+        name: DHW eco
+    title: Status
+title: Mitsubishi
