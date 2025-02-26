@@ -1,0 +1,330 @@
+theme: Backend-selected
+path: mitsubishi
+icon: mdi:heat-pump-outline
+badges: []
+cards:
+  - type: picture-elements
+    image: local/images/ecodan/ecodan-basis.png?v=1
+    elements:
+      - type: conditional
+        conditions:
+          - entity: sensor.ecodan_heatpump_status_bedrijf
+            state: Uit
+        elements:
+          - type: image
+            image: local/images/ecodan/ecodan-off.png?v=2
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+      - type: conditional
+        conditions:
+          - entity: sensor.ecodan_heatpump_status_bedrijf
+            state: Verwarmen
+        elements:
+          - type: image
+            image: local/images/ecodan/ecodan-heating.png?v=2
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+      - type: conditional
+        conditions:
+          - entity: sensor.ecodan_heatpump_status_bedrijf
+            state: SWW
+        elements:
+          - type: image
+            image: local/images/ecodan/ecodan-hot-water.png?v=2
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+      - type: conditional
+        conditions:
+          - entity: sensor.ecodan_heatpump_status_bedrijf
+            state: Ontdooien
+        elements:
+          - type: image
+            image: local/images/ecodan/ecodan-defrost.png?v=2
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+      - type: conditional
+        conditions:
+          - entity: sensor.ecodan_heatpump_status_bedrijf
+            state: Koelen
+        elements:
+          - type: image
+            image: local/images/ecodan/ecodan-cooling.png?v=2
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+      - type: conditional
+        conditions:
+          - entity: sensor.ecodan_heatpump_status_bedrijf
+            state: SWW
+          - entity: sensor.ecodan_heatpump_status_booster_heater
+            state: Aan
+        elements:
+          - type: image
+            image: local/images/ecodan/ecodan-element.png?v=2
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+      - type: state-label
+        entity: sensor.ecodan_heatpump_zone_1_ruimte_temp
+        style:
+          top: 86.5%
+          left: 21%
+          color: black
+      - type: state-label
+        entity: number.ecodan_heatpump_zone_1_ruimte_setpoint
+        style:
+          top: 80%
+          left: 21%
+          color: black
+      - type: state-label
+        entity: sensor.ecodan_heatpump_aanvoer_temp
+        style:
+          top: 13%
+          left: 74%
+          color: black
+          align: right
+      - type: state-label
+        entity: sensor.ecodan_heatpump_delta_t
+        prefix: "Δt: "
+        style:
+          top: 35%
+          left: 10%
+          color: black
+      - type: state-label
+        entity: sensor.ecodan_heatpump_retour_temp
+        style:
+          top: 38%
+          left: 74%
+          color: black
+          align: right
+      - type: state-label
+        entity: sensor.ecodan_heatpump_sww_huidige_temp
+        style:
+          top: 31%
+          left: 42%
+          color: white
+      - type: state-label
+        entity: sensor.ecodan_heatpump_koelmiddel_temp
+        style:
+          top: 54%
+          left: 85%
+          color: white
+      - type: state-label
+        entity: sensor.ecodan_heatpump_buiten_temp
+        style:
+          top: 92%
+          left: 82%
+          color: white
+      - type: state-label
+        entity: sensor.ecodan_heatpump_kompressor_frequentie
+        style:
+          top: 68%
+          left: 82%
+          color: white
+      - type: state-label
+        entity: sensor.ecodan_heatpump_aanvoer_temp
+        style:
+          top: 13%
+          left: 10%
+          color: white
+      - type: service-button
+        title: ":"
+        style:
+          top: 79%
+          left: 33%
+          color: black
+        service: homeassistant.turn_on
+        service_data:
+          entity_id: script.temperature_up
+      - type: service-button
+        title: .
+        style:
+          top: 87%
+          left: 33%
+          color: black
+        service: homeassistant.turn_on
+        service_data:
+          entity_id: script.temperature_down
+  - type: entities
+    entities:
+      - entity: switch.ecodan_heatpump_set_warmtepomp_aan_uit
+        name: Systeem aan/uit
+      - entity: switch.ecodan_heatpump_set_vakantie_modus
+        name: Vakantie modus
+      - entity: switch.ecodan_heatpump_set_forceer_sww
+        name: Forceer SWW
+      - entity: input_select.vermogens_regeling
+      - entity: sensor.ecodan_heatpump_status_bedrijf
+    show_header_toggle: false
+  - type: entities
+    entities:
+      - entity: sensor.ecodan_heatpump_buiten_temp
+        name: Buiten temp
+      - entity: sensor.ecodan_heatpump_zone_1_ruimte_temp
+        name: Ruimte temp
+      - entity: sensor.ecodan_heatpump_kompressor_frequentie
+        name: Kompressor frequentie
+      - entity: sensor.ecodan_heatpump_aanvoer_temp
+        name: Aanvoer temp
+      - entity: sensor.ecodan_heatpump_retour_temp
+        name: Retour temp
+      - entity: sensor.ecodan_heatpump_sww_huidige_temp
+        name: SWW huidige temp
+      - entity: sensor.ecodan_heatpump_koelmiddel_temp
+        name: Koelmiddel temp
+      - entity: sensor.ecodan_heatpump_koelmiddel_condensatie_temp
+        name: Koelmiddel cond. temp
+      - entity: sensor.ecodan_heatpump_flow_waarde
+        name: Flow waarde
+      - entity: sensor.ecodan_heatpump_bedrijfsuren
+        name: Bedrijfsuren
+      - entity: sensor.ecodan_heatpump_controller_versie
+        name: Controller versie
+      - entity: sensor.ecodan_heatpump_sww_max_temp_hysterese
+        name: SWW max temp hysterese
+      - entity: sensor.ecodan_heatpump_verwarmings_bron
+        name: Verwarmings bron
+      - entity: sensor.ecodan_heatpump_status_bedrijf
+        name: Status Bedrijf
+    title: Ecodan Warmtepomp
+  - type: entities
+    entities:
+      - entity: select.ecodan_heatpump_gekozen_werking_mode
+        name: Modus
+      - entity: sensor.ecodan_heatpump_zone_1_ruimte_setpoint_waarde
+        name: Ruimte setpoint waarde
+      - entity: sensor.ecodan_heatpump_zone_1_flow_setpoint_waarde
+        name: Flow setpoint waarde
+      - entity: sensor.ecodan_heatpump_sww_setpoint_waarde
+        name: SWW setpoint waarde
+    show_header_toggle: false
+  - type: history-graph
+    entities:
+      - entity: sensor.ecodan_heatpump_aanvoer_temp
+        name: Aamvoertemp
+      - entity: sensor.ecodan_heatpump_retour_temp
+        name: retourtemp
+      - entity: sensor.ecodan_heatpump_sww_huidige_temp
+        name: SWW temp
+      - entity: sensor.ecodan_heatpump_kompressor_frequentie
+        name: Kompressor freq
+  - type: custom:apexcharts-card
+    graph_span: 7d
+    update_interval: 10m
+    cache: true
+    span:
+      end: day
+      offset: "-1sec"
+    header:
+      show: true
+      title: Ecodan history per dag
+    apex_config:
+      xaxis:
+        labels:
+          format: dd-MM
+          show: true
+          showAlways: true
+      yaxis:
+        forceNiceScale: true
+        decimalsInFloat: 0
+        min: 0
+        max: 8
+      chart:
+        type: area
+        height: 250
+      stroke:
+        show: true
+        width: 1
+      legend:
+        show: true
+      dataLabels:
+        enabled: false
+        distributed: true
+      fill:
+        type: gradient
+        gradient:
+          shadeIntensity: 0.1
+          opacityFrom: 0.25
+          opacityTo: 1
+          inverseColors: true
+          stops:
+            - 0
+            - 90
+            - 100
+    series:
+      - entity: sensor.ecodan_heatpump_verwarmen_verbruikt
+        name: Verwarmen
+        type: column
+        float_precision: 2
+        group_by:
+          func: last
+          duration: 23h59m59s
+      - entity: sensor.ecodan_heatpump_koelen_verbruikt
+        name: Koelen
+        type: column
+        float_precision: 2
+        group_by:
+          func: last
+          duration: 23h59m59s
+      - entity: sensor.ecodan_heatpump_sww_verbruikt
+        name: SWW
+        type: column
+        float_precision: 2
+        group_by:
+          func: last
+          duration: 23h59m59s
+      - entity: sensor.ecodan_heatpump_verwarmen_cop
+        name: SWW cop
+        type: column
+        float_precision: 2
+        group_by:
+          func: last
+          duration: 23h59m59s
+      - entity: sensor.ecodan_heatpump_koelen_cop
+        name: Koelen cop
+        type: column
+        float_precision: 2
+        group_by:
+          func: last
+          duration: 23h59m59s
+      - entity: sensor.ecodan_heatpump_sww_cop
+        name: SWW cop
+        type: column
+        float_precision: 2
+        group_by:
+          func: last
+          duration: 23h59m59s
+  - type: thermostat
+    entity: climate.ecodan_heatpump_zone_1_thermostaat
+    show_current_as_primary: false
+    features:
+      - type: climate-hvac-modes
+  - type: entities
+    entities:
+      - entity: binary_sensor.ecodan_heatpump_status_defrost
+        name: Defrost
+      - entity: binary_sensor.ecodan_heatpump_status_water_pomp
+        name: Water pomp
+      - entity: binary_sensor.ecodan_heatpump_status_3_weg_klep
+        name: 3-weg klep
+      - entity: binary_sensor.ecodan_heatpump_status_sww_geforceerd
+        name: Status SWW geforceerd
+      - entity: binary_sensor.ecodan_heatpump_status_booster_heater
+        name: Booster element
+      - entity: binary_sensor.ecodan_heatpump_status_externe_heater
+        name: Extern element
+      - entity: binary_sensor.ecodan_heatpump_status_in1_thermostaat
+        name: IN1 thermostaat
+      - entity: binary_sensor.ecodan_heatpump_status_sww_verboden
+        name: SWW verboden
+    title: Status
