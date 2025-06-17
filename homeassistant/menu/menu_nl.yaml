@@ -4,7 +4,7 @@ icon: mdi:heat-pump-outline
 badges: []
 cards:
   - type: picture-elements
-    image: local/images/ecodan/ecodan-basis.png?v=1
+    image: local/images/ecodan/ecodan-basis.png
     elements:
       - type: conditional
         conditions:
@@ -12,7 +12,7 @@ cards:
             state: Uit
         elements:
           - type: image
-            image: local/images/ecodan/ecodan-off.png?v=2
+            image: local/images/ecodan/ecodan-off.png
             style:
               top: 50%
               left: 50%
@@ -23,7 +23,7 @@ cards:
             state: Verwarmen
         elements:
           - type: image
-            image: local/images/ecodan/ecodan-heating.png?v=2
+            image: local/images/ecodan/ecodan-heating.png
             style:
               top: 50%
               left: 50%
@@ -34,7 +34,7 @@ cards:
             state: SWW
         elements:
           - type: image
-            image: local/images/ecodan/ecodan-hot-water.png?v=2
+            image: local/images/ecodan/ecodan-hot-water.png
             style:
               top: 50%
               left: 50%
@@ -45,7 +45,7 @@ cards:
             state: Ontdooien
         elements:
           - type: image
-            image: local/images/ecodan/ecodan-defrost.png?v=2
+            image: local/images/ecodan/ecodan-defrost.png
             style:
               top: 50%
               left: 50%
@@ -56,7 +56,7 @@ cards:
             state: Koelen
         elements:
           - type: image
-            image: local/images/ecodan/ecodan-cooling.png?v=2
+            image: local/images/ecodan/ecodan-cooling.png
             style:
               top: 50%
               left: 50%
@@ -69,7 +69,7 @@ cards:
             state: Aan
         elements:
           - type: image
-            image: local/images/ecodan/ecodan-element.png?v=2
+            image: local/images/ecodan/ecodan-element.png
             style:
               top: 50%
               left: 50%
